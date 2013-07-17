@@ -1,6 +1,8 @@
 RachelBlog3::Application.routes.draw do
-    root :to => 'posts#index'
-    get '/posts' => 'posts#new'
+  root :to => 'posts#index'
+  get '/posts' => 'posts#new'
+  get '/posts/:id' => 'posts#show', as: 'post'
+  post '/posts' => 'posts#create'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
