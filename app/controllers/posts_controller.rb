@@ -2,7 +2,7 @@ class PostsController <ApplicationController
 
   def index
     @name = "Rachel"
-    @post = Post.all
+    @posts = Post.all
     # respond_to do |format|
     #   format.html # show default view
     #   format.json {render json: @products}
