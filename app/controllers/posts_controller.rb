@@ -26,4 +26,23 @@ class PostsController <ApplicationController
     end
   end
 
+  # def update
+  #   @post = Post.find(params[:id])
+  # end
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+
+    respond_to do |format|
+      if @post.update_attributes(params[:post])
+        format.html { redirect_to post_path(@post), notice: 'Post was successfully updated!'}
+      else
+        format.html { render action: 'edit', notice: 'Error!  Post was not updated.'}
+      end
+    end
+  end
+
 end
