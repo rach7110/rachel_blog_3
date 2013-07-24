@@ -11,6 +11,15 @@
 
 <%= params.inspect %>
 <%h1= "#{@name}'s Blog" %>
+
+<% if flash[:notice] %>
+	<%= flash[:notice] %>
+<% end %>
+
+<% if flash[:alert] %>
+	<%= flash[:alert] %>
+<% end %>	
+
 <%= yield %>
 
 </body>

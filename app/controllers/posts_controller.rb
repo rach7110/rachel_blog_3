@@ -3,10 +3,10 @@ class PostsController <ApplicationController
   def index
     @name = "Rachel"
     @posts = Post.all
-    # respond_to do |format|
-    #   format.html # show default view
-    #   format.json {render json: @products}
-    # end
+    respond_to do |format|
+      format.html # show default view
+      format.json {render json: @products}
+    end
   end
 
   def show
@@ -21,7 +21,7 @@ class PostsController <ApplicationController
   def create 
     @post = Post.new(params[:post])
     if @post.save
-      redirect_to post_path(@post.id)
+      redirect_to post_path(@post.id), notice: "created successfully"
     else
       render action: 'new'
     end
@@ -62,14 +62,25 @@ class PostsController <ApplicationController
 
 
 
-    respond_to do |format|
-       # option 4 - updating post:
-      if @post.update_attributes(params[:post])
-        format.html { redirect_to post_path(@post), notice: 'Post was successfully updated!'}
-      else
-        
-      end
-    end
+    # respond_to do |format|
+       # option 4 - updating post:\
+      @post.update_attributes(params[:post])
+      redirect_to post_path(@post), notice: 'Post was successfully updated!'
+  
+      
+
+      # if @post.update_attributes(params[:post])
+      #   format.html { redirect_to post_path(@post), notice: 'Post was successfully updated!'}
+      # else
+      #   redirect_to(edit_post)
+      # end
+
   end
 
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to posts_path, alert: "Are you sure????" 
+  end
+  
 end

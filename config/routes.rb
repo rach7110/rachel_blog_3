@@ -1,12 +1,13 @@
 RachelBlog3::Application.routes.draw do
   root :to => 'posts#index'
   # get '/' => 'posts' (root :to)
-  get '/posts' => 'posts#index'
+  get '/posts' => 'posts#index', as: 'posts'
   get '/posts/new' => 'posts#new'
   get '/posts/:id' => 'posts#show', as: 'post'
   post '/posts' => 'posts#create'
-  get 'posts/:id/edit' => 'posts#edit', as: 'edit_post'
-  put 'posts/:id' => 'posts#update'
+  get '/posts/:id/edit' => 'posts#edit', as: 'edit_post'
+  put '/posts/:id' => 'posts#update'
+  delete '/posts/:id' => 'posts#destroy', as: 'delete_post'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
